@@ -21,7 +21,7 @@ CREATE  TABLE IF NOT EXISTS `russiankohana_kohanaworld_dev`.`developers` (
   `blog_url` VARCHAR(256) NULL DEFAULT NULL COMMENT 'blog/site URL' ,
   PRIMARY KEY (`id`) )
 ENGINE = InnoDB
-COMMENT = 'Таблица с данными о разработчиках';
+COMMENT = 'Github developers table';
 
 
 -- -----------------------------------------------------
@@ -56,7 +56,7 @@ COMMENT = 'Modules main info';
 -- Table `russiankohana_kohanaworld_dev`.`module_info`
 -- -----------------------------------------------------
 CREATE  TABLE IF NOT EXISTS `russiankohana_kohanaworld_dev`.`module_info` (
-  `id` INT NOT NULL ,
+  `id` INT UNSIGNED NOT NULL AUTO_INCREMENT ,
   `module_id` INT UNSIGNED NOT NULL COMMENT 'module id' ,
   `forks` SMALLINT NOT NULL COMMENT 'number of module forks' ,
   `watchers` SMALLINT NOT NULL COMMENT 'number of module watchers' ,
