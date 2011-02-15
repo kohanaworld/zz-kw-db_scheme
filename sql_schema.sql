@@ -70,8 +70,8 @@ CREATE  TABLE IF NOT EXISTS `russiankohana_kohanaworld_dev`.`module_info` (
   CONSTRAINT `fk_module-info_module`
     FOREIGN KEY (`module_id` )
     REFERENCES `russiankohana_kohanaworld_dev`.`modules` (`id` )
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION)
+    ON DELETE RESTRICT
+    ON UPDATE CASCADE)
 ENGINE = InnoDB
 COMMENT = 'Modules information collection';
 
@@ -133,8 +133,8 @@ CREATE  TABLE IF NOT EXISTS `russiankohana_kohanaworld_dev`.`developer_info` (
   CONSTRAINT `fk_developer_info-developer`
     FOREIGN KEY (`developer_id` )
     REFERENCES `russiankohana_kohanaworld_dev`.`developers` (`id` )
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION)
+    ON DELETE RESTRICT
+    ON UPDATE CASCADE)
 ENGINE = InnoDB
 COMMENT = 'Дополнительная информация о разработчике';
 
@@ -152,13 +152,13 @@ CREATE  TABLE IF NOT EXISTS `russiankohana_kohanaworld_dev`.`modules_contributor
   CONSTRAINT `fk_module-contributor_module`
     FOREIGN KEY (`module_id` )
     REFERENCES `russiankohana_kohanaworld_dev`.`modules` (`id` )
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION,
+    ON DELETE CASCADE
+    ON UPDATE CASCADE,
   CONSTRAINT `fk_module-contributor_contributor`
     FOREIGN KEY (`developer_id` )
     REFERENCES `russiankohana_kohanaworld_dev`.`developers` (`id` )
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION)
+    ON DELETE CASCADE
+    ON UPDATE CASCADE)
 ENGINE = InnoDB
 COMMENT = 'Таблица для связи между разработчиками и модулями';
 
@@ -247,6 +247,31 @@ CREATE  TABLE IF NOT EXISTS `russiankohana_kohanaworld_dev`.`crawlers` (
 ENGINE = InnoDB
 DEFAULT CHARACTER SET = utf8
 COLLATE = utf8_general_ci;
+
+
+-- -----------------------------------------------------
+-- Table `russiankohana_kohanaworld_dev`.`module_info_history`
+-- -----------------------------------------------------
+CREATE  TABLE IF NOT EXISTS `russiankohana_kohanaworld_dev`.`module_info_history` (
+  `id` INT UNSIGNED NOT NULL AUTO_INCREMENT ,
+  `date_create` INT UNSIGNED NOT NULL ,
+  `module_id` INT UNSIGNED NOT NULL COMMENT 'module id' ,
+  `forks` SMALLINT NOT NULL COMMENT 'number of module forks' ,
+  `watchers` SMALLINT NOT NULL COMMENT 'number of module watchers' ,
+  `tags` SMALLINT NOT NULL COMMENT 'number of module tags' ,
+  `score` FLOAT(4,3) NOT NULL COMMENT 'Github module score' ,
+  `issues_opened` SMALLINT UNSIGNED NOT NULL DEFAULT 0 COMMENT 'number of opened issueses' ,
+  `issues_closed` SMALLINT UNSIGNED NOT NULL DEFAULT 0 COMMENT 'number of closed issueses' ,
+  `date_update` INT UNSIGNED NOT NULL COMMENT 'module update date' ,
+  PRIMARY KEY (`id`) ,
+  INDEX `fk_module-info_module` (`module_id` ASC) ,
+  CONSTRAINT `fk_module-info-history_module0`
+    FOREIGN KEY (`module_id` )
+    REFERENCES `russiankohana_kohanaworld_dev`.`modules` (`id` )
+    ON DELETE RESTRICT
+    ON UPDATE CASCADE)
+ENGINE = InnoDB
+COMMENT = 'Modules information history';
 
 
 
