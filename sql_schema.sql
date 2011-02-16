@@ -64,6 +64,7 @@ CREATE  TABLE IF NOT EXISTS `russiankohana_kohanaworld_dev`.`module_info` (
   `issues_opened` SMALLINT UNSIGNED NOT NULL DEFAULT 0 COMMENT 'number of opened issueses' ,
   `issues_closed` SMALLINT UNSIGNED NOT NULL DEFAULT 0 COMMENT 'number of closed issueses' ,
   `date_update` INT UNSIGNED NOT NULL COMMENT 'module update date' ,
+  `date_update_github` INT NOT NULL ,
   PRIMARY KEY (`id`) ,
   INDEX `fk_module-info_module` (`module_id` ASC) ,
   CONSTRAINT `fk_module-info_module`
@@ -263,6 +264,7 @@ CREATE  TABLE IF NOT EXISTS `russiankohana_kohanaworld_dev`.`module_info_history
   `issues_opened` SMALLINT UNSIGNED NOT NULL DEFAULT 0 COMMENT 'number of opened issueses' ,
   `issues_closed` SMALLINT UNSIGNED NOT NULL DEFAULT 0 COMMENT 'number of closed issueses' ,
   `date_update` INT UNSIGNED NOT NULL COMMENT 'module update date' ,
+  `date_update_github` INT NOT NULL ,
   PRIMARY KEY (`id`) ,
   INDEX `fk_module-info-history_module` (`module_id` ASC) ,
   CONSTRAINT `fk_module-info-history_module`
